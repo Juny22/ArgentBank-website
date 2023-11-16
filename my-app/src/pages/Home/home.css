@@ -1,0 +1,6 @@
+/* Features components*/
+
+.features {
+    display: flex;
+    flex-direction: column;
+  }
