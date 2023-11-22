@@ -1,6 +1,7 @@
 import Footer from '../../components/Footer/footer'
 import Navigation from '../../components/Navigation/navigation'
 import Login from '../../components/Login/login'
+import './login.css'
 
 export default function SignIn() {
   document.title = 'Argent Bank - Login'

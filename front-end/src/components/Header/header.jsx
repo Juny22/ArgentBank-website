@@ -1,7 +1,7 @@
-import './UserHeader.css'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateProfile } from '../../app/actions/actions'
+import { updateProfile } from '../../actions/actions'
+import './header.css'
 
 export default function UserHeader() {
   const dispatch = useDispatch()
