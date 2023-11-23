@@ -8,24 +8,16 @@ const INITIAL_STATE = { success: false, firstName: '', lastName: '' }
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_PROFILE_SUCCESS:
-      return {
-        firstName: action.payload.body.firstName,
-        lastName: action.payload.body.lastName,
-      }
+      const { firstName, lastName } = action.payload.body;
+      return { ...state, success: true, firstName, lastName };
     case USER_PROFILE_UPDATE:
-      return {
-        success: true,
-        firstName: action.payload.body.firstName,
-        lastName: action.payload.body.lastName,
-      }
+      const { firstName: updatedFirstName, lastName: updatedLastName } = action.payload.body;
+      return { ...state, success: true, firstName: updatedFirstName, lastName: updatedLastName };
     case USER_PROFILE_FAIL:
-      return { error: action.payload }
+      return { ...state, error: action.payload };
     case USER_PROFILE_RESET:
-      return {
-        firstName: null,
-        lastName: null,
-      }
+      return { ...INITIAL_STATE };
     default:
-      return state
+      return state;
   }
-}
+};

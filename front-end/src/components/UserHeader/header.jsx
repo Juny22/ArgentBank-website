@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { updateProfile } from '../../actions/actions'
 import './header.css'
 
-export default function UserHeader() {
+function UserHeader() {
   const dispatch = useDispatch()
 
   const { firstName } = useSelector((state) => state.userProfile)
@@ -23,7 +23,9 @@ export default function UserHeader() {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(updateProfile(token, newFirstname, newLastname))
+    dispatch(updateProfile(token, newFirstname, newLastname));
+    //console.log('New Firstname:', newFirstname);
+    //console.log('New Lastname:', newLastname);
     if ({ success }) {
       setEditButton((current) => !current)
     }
@@ -36,7 +38,7 @@ export default function UserHeader() {
           <h1>
             Welcome back
             <br />
-            {firstName + ' ' + lastName} !
+            {newFirstname && newLastname ? `${newFirstname} ${newLastname} !` : `${firstName} ${lastName} !`}
           </h1>
           <button onClick={editNameButton} className="edit-button">
             Edit Name
@@ -49,12 +51,14 @@ export default function UserHeader() {
             <div className="editNameInputs">
               <input
                 type="text"
+                id="newFirstname"
                 placeholder={firstName}
                 onChange={(e) => setNewFirstname(e.target.value)}
                 required
               />
               <input
                 type="text"
+                id="newLastname"
                 placeholder={lastName}
                 onChange={(e) => setNewLastname(e.target.value)}
                 required
@@ -74,3 +78,6 @@ export default function UserHeader() {
     </>
   )
 }
+
+
+export default UserHeader;

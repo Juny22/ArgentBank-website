@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 import { logout } from '../../actions/actions'
 import './navigation.css'
 
-export default function Navigation() {
+function Navigation() {
   let navigate = useNavigate()
   const dispatch = useDispatch()
   const { token } = useSelector((state) => state.userLogin)
@@ -54,3 +54,6 @@ export default function Navigation() {
     </nav>
   )
 }
+
+
+export default Navigation;

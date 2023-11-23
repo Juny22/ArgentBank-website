@@ -1,5 +1,6 @@
 import './account.css'
-export default function Account(props) {
+
+function Account(props) {
   return (
     <section className="account">
       <div className="account-content-wrapper">
@@ -13,3 +14,5 @@ export default function Account(props) {
     </section>
   )
 }
+
+export default Account;

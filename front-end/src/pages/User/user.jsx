@@ -1,13 +1,13 @@
 import Footer from '../../components/Footer/footer'
 import Navigation from '../../components/Navigation/navigation'
 import Account from '../../components/Account/account'
-import UserHeader from '../../components/Header/header'
+import UserHeader from '../../components/UserHeader/header'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import './user.css'
 
-export default function User() {
+function User() {
   document.title = "Argent Bank - User's Page"
   let navigate = useNavigate()
 
@@ -45,3 +45,5 @@ export default function User() {
     </>
   )
 }
+
+export default User;

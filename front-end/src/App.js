@@ -5,15 +5,6 @@ import SignIn from './pages/Login/login'
 import User from './pages/User/user'
 import store from './store/store';
 
-/*import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers";*/
-
-
-/*const store = configureStore({
-  reducer: rootReducer,
-  devTools: false,
-});*/
-
 function App() {
   return (
     <Provider store={store}>

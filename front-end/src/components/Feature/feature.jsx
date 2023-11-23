@@ -1,6 +1,6 @@
 import './feature.css'
 
-export default function FeatureItem(props) {
+function FeatureItem(props) {
   return (
     <div className="feature-item">
       <img src={props.iconUrl} alt="Chat Icon" className="feature-icon" />
@@ -9,3 +9,5 @@ export default function FeatureItem(props) {
     </div>
   )
 }
+
+export default FeatureItem;

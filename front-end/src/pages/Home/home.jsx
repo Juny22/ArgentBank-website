@@ -9,7 +9,7 @@ import Footer from '../../components/Footer/footer'
 
 import './home.css'
 
-export default function Index() {
+function Home() {
   document.title = 'Argent Bank - Home Page'
 
   /* Features Content */
@@ -52,3 +52,6 @@ export default function Index() {
     </>
   )
 }
+
+
+export default Home;

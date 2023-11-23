@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { login } from '../../actions/actions';
-import './login.css';
+import './loginForm.css';
 
-export default function SignInForm() {
+function SignInForm() {
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
@@ -65,3 +65,4 @@ export default function SignInForm() {
     </section>
   )
 }
+export default SignInForm;

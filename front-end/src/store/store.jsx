@@ -1,29 +1,28 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunk from 'redux-thunk'
-import { userReducer } from '../reducers/UserReducer'
-import { loginReducer } from '../reducers/loginReducer'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { userReducer } from '../reducers/UserReducer';
+import { loginReducer } from '../reducers/loginReducer';
 
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const rootReducer = combineReducers({
   userLogin: loginReducer,
   userProfile: userReducer,
-})
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleware = [thunk]
+const middlewares = [thunk];
 
-const store = createStore(
-  persistedReducer,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+const enhancers = composeWithDevTools(applyMiddleware(...middlewares));
+
+const store = createStore(persistedReducer, enhancers);
 
 export const persistor = persistStore(store);
-export default store
+export default store;
