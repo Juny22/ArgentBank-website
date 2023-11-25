@@ -1,7 +1,10 @@
-export const USER_PROFILE_SUCCESS = 'USER_PROFILE_SUCCESS'
-export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL'
-export const USER_PROFILE_RESET = 'USER_PROFILE_RESET'
-export const USER_PROFILE_UPDATE = 'USER_PROFILE_UPDATE'
+import {
+  USER_PROFILE_SUCCESS,
+  USER_PROFILE_FAIL,
+  USER_PROFILE_RESET,
+  USER_PROFILE_UPDATE,
+  USER_PROFILE_UPDATE_FAIL,
+} from '../constants/actions'
 
 const INITIAL_STATE = { success: false, firstName: '', lastName: '' }
 
@@ -11,8 +14,14 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       const { firstName, lastName } = action.payload.body;
       return { ...state, success: true, firstName, lastName };
     case USER_PROFILE_UPDATE:
-      const { firstName: updatedFirstName, lastName: updatedLastName } = action.payload.body;
-      return { ...state, success: true, firstName: updatedFirstName, lastName: updatedLastName };
+      return {
+        ...state,
+        success: true,
+        firstName: action.payload.body.firstName || state.firstName,
+        lastName: action.payload.body.lastName || state.lastName,
+      };
+    case USER_PROFILE_UPDATE_FAIL:
+      return { ...state, error: action.payload };
     case USER_PROFILE_FAIL:
       return { ...state, error: action.payload };
     case USER_PROFILE_RESET:
