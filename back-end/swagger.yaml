@@ -65,11 +65,9 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
@@ -94,13 +92,80 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
-          schema:
-            $ref: '#/definitions/ApiResponse'
+          description: User profile updated successfully
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/transactions:
+    get:
+      summary: Get user transactions
+      description: Retrieve transactions for a user
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+    post:
+      summary: Create a new transaction
+      description: Create a new transaction for a user
+      parameters:
+        - in: body
+          name: body
+          description: Transaction payload
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionInput'
+      responses:
+        '201':
+          description: Transaction created successfully
+  /user/transactions/{transactionId}:
+    get:
+      summary: Get a specific transaction
+      description: Retrieve a transaction by its ID
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to retrieve
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Transaction'
+    put:
+      summary: Update a transaction
+      description: Update an existing transaction by its ID
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to update
+          required: true
+          type: integer
+        - in: body
+          name: body
+          description: Updated transaction information
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionInput'
+      responses:
+        '200':
+          description: Transaction updated successfully
+    delete:
+      summary: Delete a transaction
+      description: Delete an existing transaction by its ID
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to delete
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: Transaction deleted successfully
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +221,13 @@ definitions:
     properties:
       userName:
         type: string
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: integer
+  TransactionInput:
+    type: object
+    properties:
+      id:
+        type: integer
