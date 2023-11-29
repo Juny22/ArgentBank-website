@@ -97,9 +97,11 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transactions:
+  /user/account/{accountId}/transactions:
     get:
-      summary: Get user transactions
+      tags:
+        - Transactions
+      summary: Get user transactions by account id
       description: Retrieve transactions for a user
       responses:
         '200':
@@ -108,21 +110,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Transaction'
-    post:
-      summary: Create a new transaction
-      description: Create a new transaction for a user
-      parameters:
-        - in: body
-          name: body
-          description: Transaction payload
-          required: true
-          schema:
-            $ref: '#/definitions/TransactionInput'
+  /user/accounts:
+    get:
+      tags:
+        - Transactions
+      summary: Get all accounts for current users
+      description: Retrieve accounts for a user
       responses:
-        '201':
-          description: Transaction created successfully
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
   /user/transactions/{transactionId}:
     get:
+      tags:
+        - Transactions
       summary: Get a specific transaction
       description: Retrieve a transaction by its ID
       parameters:
@@ -137,6 +141,8 @@ paths:
           schema:
             $ref: '#/definitions/Transaction'
     put:
+      tags:
+        - Transactions
       summary: Update a transaction
       description: Update an existing transaction by its ID
       parameters:
@@ -150,22 +156,11 @@ paths:
           description: Updated transaction information
           required: true
           schema:
-            $ref: '#/definitions/TransactionInput'
+            $ref: '#/definitions/Transaction'
       responses:
         '200':
           description: Transaction updated successfully
-    delete:
-      summary: Delete a transaction
-      description: Delete an existing transaction by its ID
-      parameters:
-        - in: path
-          name: transactionId
-          description: ID of the transaction to delete
-          required: true
-          type: integer
-      responses:
-        '204':
-          description: Transaction deleted successfully
+    
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -226,8 +221,18 @@ definitions:
     properties:
       id:
         type: integer
-  TransactionInput:
+      description:
+        type: string
+      ammount:
+        type: number
+      accountId:
+        type: integer
+  Account:
     type: object
     properties:
       id:
         type: integer
+      name:
+        type: string
+      ammount:
+        type: number
