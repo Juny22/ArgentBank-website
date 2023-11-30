@@ -97,19 +97,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/account/{accountId}/transactions:
-    get:
-      tags:
-        - Transactions
-      summary: Get user transactions by account id
-      description: Retrieve transactions for a user
-      responses:
-        '200':
-          description: Successful response
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Transaction'
   /user/accounts:
     get:
       tags:
@@ -123,13 +110,45 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Account'
-  /user/transactions/{transactionId}:
+        '400':
+          description: The request could not be processed due to missing or invalid parameters. Please ensure the request contains valid information.
+        '500':
+          description: Internal Server Error
+  /user/account/{accountId}/transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get user transactions by account id
+      description: Retrieve transactions for a user
+      parameters:
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '400':
+          description: The request could not be processed due to missing or invalid parameters. Please ensure the provided account ID is correct and the request contains valid information.
+        '500':
+          description: Internal Server Error
+  /user/account/{accountId}/transactions/{transactionId}:
     get:
       tags:
         - Transactions
       summary: Get a specific transaction
       description: Retrieve a transaction by its ID
       parameters:
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
         - in: path
           name: transactionId
           description: ID of the transaction to retrieve
@@ -140,27 +159,82 @@ paths:
           description: Successful response
           schema:
             $ref: '#/definitions/Transaction'
-    put:
+        '400':
+          description: The request could not be processed due to invalid parameters or missing information in the request. Please ensure the provided transaction ID is correct.
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionsId}/category:
+    patch:
       tags:
-        - Transactions
-      summary: Update a transaction
-      description: Update an existing transaction by its ID
+      - Transactions
+      summary: Update an existing transaction (category)
+      description: Updating a transaction's category by its ID
+      consumes:
+      - application/json
+      produces:
+      - application/json
       parameters:
-        - in: path
-          name: transactionId
-          description: ID of the transaction to update
-          required: true
-          type: integer
-        - in: body
-          name: body
-          description: Updated transaction information
-          required: true
-          schema:
-            $ref: '#/definitions/Transaction'
+      - in: path
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
+      - in: path
+        name: transactionsId
+        description: Transaction's ID
+        required: true
+        type: integer
+      - in: body
+        name: body
+        required: true
+        description: Update transaction's informations
+        schema:
+            $ref: '#/definitions/TransactionsUpdateCategory'
       responses:
         '200':
-          description: Transaction updated successfully
-    
+          description: Transaction updated successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: The request could not be processed due to missing or invalid parameters. Please ensure the provided account ID and transaction ID are correct, and the request body contains valid information.
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionsId}/notes:
+    patch:
+      tags:
+      - Transactions
+      summary: Update an existing transaction (notes)
+      description: Updating transaction's notes by its ID
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
+      - in: path
+        name: transactionsId
+        description: Transaction's ID
+        required: true
+        type: integer
+      - in: body
+        name: body
+        required: true
+        description: Update transaction's informations
+        schema:
+            $ref: '#/definitions/TransactionsUpdateNotes'
+      responses:
+        '200':
+          description: Transaction updated successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: The request could not be processed due to missing or invalid parameters. Please ensure the provided account ID and transaction ID are correct, and the request body contains valid information.
+        '500':
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -223,10 +297,14 @@ definitions:
         type: integer
       description:
         type: string
-      ammount:
+      amount:
         type: number
       accountId:
         type: integer
+      date:
+        type: string
+        format: date
+        description: Transaction date
   Account:
     type: object
     properties:
@@ -236,3 +314,13 @@ definitions:
         type: string
       ammount:
         type: number
+  TransactionsUpdateCategory:
+    type: object
+    properties:
+      category:
+        type: string
+  TransactionsUpdateNotes:
+    type: object
+    properties:
+      notes:
+        type: string
