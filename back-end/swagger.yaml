@@ -101,7 +101,7 @@ paths:
     get:
       tags:
         - Transactions
-      summary: Get all accounts for current users
+      summary: Get all accounts for current user
       description: Retrieve accounts for a user
       responses:
         '200':
@@ -110,6 +110,27 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Account'
+        '400':
+          description: The request could not be processed due to missing or invalid parameters. Please ensure the request contains valid information.
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}:
+    get:
+      tags:
+        - Transactions
+      summary: Get a specific account for current user
+      description: Retrieve a specific account for a user
+      parameters:
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Account'
         '400':
           description: The request could not be processed due to missing or invalid parameters. Please ensure the request contains valid information.
         '500':
@@ -142,7 +163,7 @@ paths:
       tags:
         - Transactions
       summary: Get a specific transaction
-      description: Retrieve a transaction by its ID
+      description: Retrieve a specific transaction by its ID and account
       parameters:
         - in: path
           name: accountId
