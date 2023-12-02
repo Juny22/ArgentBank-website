@@ -24,8 +24,6 @@ function UserHeader() {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(updateProfile(token, newFirstname, newLastname));
-    //console.log('New Firstname:', newFirstname);
-    //console.log('New Lastname:', newLastname);
     if ({ success }) {
       setEditButton((current) => !current)
     }
