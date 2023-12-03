@@ -103,6 +103,12 @@ paths:
         - Transactions
       summary: Get all accounts for current user
       description: Retrieve accounts for a user
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -121,6 +127,11 @@ paths:
       summary: Get a specific account for current user
       description: Retrieve a specific account for a user
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
         - in: path
           name: accountId
           description: User's account ID
@@ -142,6 +153,11 @@ paths:
       summary: Get user transactions by account id
       description: Retrieve transactions for a user
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
         - in: path
           name: accountId
           description: User's account ID
@@ -165,6 +181,11 @@ paths:
       summary: Get a specific transaction
       description: Retrieve a specific transaction by its ID and account
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
         - in: path
           name: accountId
           description: User's account ID
@@ -187,30 +208,35 @@ paths:
   /user/accounts/{accountId}/transactions/{transactionsId}/category:
     patch:
       tags:
-      - Transactions
+        - Transactions
       summary: Update an existing transaction (category)
       description: Updating a transaction's category by its ID
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: path
-        name: accountId
-        description: User's account ID
-        type: integer
-        required: true
-      - in: path
-        name: transactionsId
-        description: Transaction's ID
-        required: true
-        type: integer
-      - in: body
-        name: body
-        required: true
-        description: Update transaction's informations
-        schema:
-            $ref: '#/definitions/TransactionsUpdateCategory'
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+        - in: path
+          name: transactionsId
+          description: Transaction's ID
+          required: true
+          type: integer
+        - in: body
+          name: body
+          required: true
+          description: Update transaction's informations
+          schema:
+              $ref: '#/definitions/TransactionsUpdateCategory'
       responses:
         '200':
           description: Transaction updated successully
@@ -223,30 +249,30 @@ paths:
   /user/accounts/{accountId}/transactions/{transactionsId}/notes:
     patch:
       tags:
-      - Transactions
+        - Transactions
       summary: Update an existing transaction (notes)
       description: Updating transaction's notes by its ID
       consumes:
-      - application/json
+        - application/json
       produces:
-      - application/json
+        - application/json
       parameters:
-      - in: path
-        name: accountId
-        description: User's account ID
-        type: integer
-        required: true
-      - in: path
-        name: transactionsId
-        description: Transaction's ID
-        required: true
-        type: integer
-      - in: body
-        name: body
-        required: true
-        description: Update transaction's informations
-        schema:
-            $ref: '#/definitions/TransactionsUpdateNotes'
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+        - in: path
+          name: transactionsId
+          description: Transaction's ID
+          required: true
+          type: integer
+        - in: body
+          name: body
+          required: true
+          description: Update transaction's informations
+          schema:
+              $ref: '#/definitions/TransactionsUpdateNotes'
       responses:
         '200':
           description: Transaction updated successully
