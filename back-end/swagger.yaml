@@ -257,6 +257,11 @@ paths:
       produces:
         - application/json
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
         - in: path
           name: accountId
           description: User's account ID
