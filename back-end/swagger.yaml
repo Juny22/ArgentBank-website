@@ -215,7 +215,7 @@ paths:
         '200':
           description: Transaction updated successully
           schema:
-            $ref: '#/definitions/Transactions'
+            $ref: '#/definitions/Transaction'
         '400':
           description: The request could not be processed due to missing or invalid parameters. Please ensure the provided account ID and transaction ID are correct, and the request body contains valid information.
         '500':
@@ -251,7 +251,7 @@ paths:
         '200':
           description: Transaction updated successully
           schema:
-            $ref: '#/definitions/Transactions'
+            $ref: '#/definitions/Transaction'
         '400':
           description: The request could not be processed due to missing or invalid parameters. Please ensure the provided account ID and transaction ID are correct, and the request body contains valid information.
         '500':
