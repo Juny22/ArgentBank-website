@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ArgentBank-website/front-end/static/css/main.8e5f3119.css",
-    "main.js": "/ArgentBank-website/front-end/static/js/main.23cf4ad6.js",
-    "static/media/bank-tree.jpeg": "/ArgentBank-website/front-end/static/media/bank-tree.4d59987c7c62b024b014.jpeg",
-    "static/media/icon-security.png": "/ArgentBank-website/front-end/static/media/icon-security.1c819fa1007a5c53e6a9.png",
-    "static/media/argentBankLogo.png": "/ArgentBank-website/front-end/static/media/argentBankLogo.e031a16c76ab9bbbf78a.png",
-    "static/media/icon-chat.png": "/ArgentBank-website/front-end/static/media/icon-chat.e238539d82b5a5f63c33.png",
-    "static/media/icon-money.png": "/ArgentBank-website/front-end/static/media/icon-money.8ec88bb1a5070fd6513a.png",
-    "index.html": "/ArgentBank-website/front-end/index.html",
-    "main.8e5f3119.css.map": "/ArgentBank-website/front-end/static/css/main.8e5f3119.css.map",
-    "main.23cf4ad6.js.map": "/ArgentBank-website/front-end/static/js/main.23cf4ad6.js.map"
+    "main.css": "/ArgentBank-website/static/css/main.a1825f8a.css",
+    "main.js": "/ArgentBank-website/static/js/main.90cc8204.js",
+    "static/media/bank-tree.jpeg": "/ArgentBank-website/static/media/bank-tree.4d59987c7c62b024b014.jpeg",
+    "static/media/icon-security.png": "/ArgentBank-website/static/media/icon-security.1c819fa1007a5c53e6a9.png",
+    "static/media/argentBankLogo.png": "/ArgentBank-website/static/media/argentBankLogo.e031a16c76ab9bbbf78a.png",
+    "static/media/icon-chat.png": "/ArgentBank-website/static/media/icon-chat.e238539d82b5a5f63c33.png",
+    "static/media/icon-money.png": "/ArgentBank-website/static/media/icon-money.8ec88bb1a5070fd6513a.png",
+    "index.html": "/ArgentBank-website/index.html",
+    "main.a1825f8a.css.map": "/ArgentBank-website/static/css/main.a1825f8a.css.map",
+    "main.90cc8204.js.map": "/ArgentBank-website/static/js/main.90cc8204.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e5f3119.css",
-    "static/js/main.23cf4ad6.js"
+    "static/css/main.a1825f8a.css",
+    "static/js/main.90cc8204.js"
   ]
 }
