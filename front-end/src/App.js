@@ -8,7 +8,7 @@ import store from './store/store';
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <Router basename="/ArgentBank-website">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<SignIn />} />
